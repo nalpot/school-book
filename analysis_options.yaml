@@ -21,11 +21,22 @@ linter:
   # `// ignore_for_file: name_of_lint` syntax on the line or in the file
   # producing the lint.
   rules:
+    avoid_init_to_null: true
+    unnecessary_lambdas: true
+    unnecessary_getters_setters: true
+    prefer_initializing_formals: true
+    use_rethrow_when_possible: true
+    avoid_catching_errors: true
+
     avoid_print: true # Don't use print, use proper logging
     prefer_single_quotes: true
-    always_use_package_imports: true
-    public_member_api_docs: true # Force documentation for public APIs
+    always_use_package_imports: false
+    public_member_api_docs: false # Force documentation for public APIs
     sort_pub_dependencies: true
+    prefer_relative_imports: true
+    avoid_relative_lib_imports: true
+    prefer_final_in_for_each: true
+    avoid_positional_boolean_parameters: true
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
