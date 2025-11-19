@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/blocs/theme/theme_bloc.dart';
 
 class SettingPage extends StatefulWidget {
+  /// Creates a [SettingPage] instance.
   const SettingPage({super.key});
 
   @override
@@ -15,7 +16,9 @@ class SettingPage extends StatefulWidget {
 class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
+    // Main scaffold for the settings page
     return Scaffold(
+      // App bar with title and back button
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
         title: const Text(
@@ -30,6 +33,7 @@ class _SettingPageState extends State<SettingPage> {
             SingleChildScrollView(
               child: Column(
                 children: [
+                  // Theme selection card
                   Card(
                     margin: const EdgeInsets.symmetric(horizontal: 16),
                     child: InkWell(
@@ -67,6 +71,7 @@ class _SettingPageState extends State<SettingPage> {
                     ),
                   ),
                   const SizedBox(height: 16),
+                  // Language selection card
                   Card(
                     margin: const EdgeInsets.symmetric(horizontal: 16),
                     child: Padding(
@@ -80,8 +85,9 @@ class _SettingPageState extends State<SettingPage> {
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
                           const Spacer(),
+                          // TODO: Implement language selection logic
                           Text(
-                            'English',
+                            'English', // Current selected language
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
                           const Icon(Icons.arrow_forward_ios_rounded),
@@ -90,6 +96,7 @@ class _SettingPageState extends State<SettingPage> {
                     ),
                   ),
                   const SizedBox(height: 16),
+                  // Download folder selection card
                   Card(
                     margin: const EdgeInsets.symmetric(horizontal: 16),
                     child: Padding(
@@ -98,31 +105,36 @@ class _SettingPageState extends State<SettingPage> {
                         children: [
                           const Icon(Icons.folder_outlined),
                           const SizedBox(width: 8),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Download Folder',
-                                style: Theme.of(context).textTheme.bodyMedium,
-                              ),
-                              Text(
-                                '/sdcard/schoolbook',
-                                style: Theme.of(context).textTheme.labelSmall,
-                              ),
-                            ],
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Download Folder',
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                ),
+                                // TODO: Implement folder picker
+                                Text(
+                                  '/sdcard/schoolbook', // Current download path
+                                  style: Theme.of(context).textTheme.labelSmall,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ),
                           ),
-                          const Spacer(),
+                          const SizedBox(width: 8),
                           const Icon(Icons.arrow_forward_ios_rounded),
                         ],
                       ),
                     ),
                   ),
                   const SizedBox(height: 48),
+                  // Storage information section
                   DividerTheme(
                     data: const DividerThemeData(
                       color: Colors.grey,
                       thickness: 0.2,
-                      space: 0,
+                      space: 0, // No extra space around the divider
                     ),
                     child: Card(
                       margin: const EdgeInsets.symmetric(horizontal: 16),
@@ -179,6 +191,7 @@ class _SettingPageState extends State<SettingPage> {
               ),
             ),
             const Spacer(),
+            // App version and platform information footer
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(8),
