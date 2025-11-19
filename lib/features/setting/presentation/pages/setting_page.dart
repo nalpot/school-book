@@ -186,7 +186,7 @@ class _SettingPageState extends State<SettingPage> {
                 color: Theme.of(context).disabledColor.withValues(alpha: 0.2),
               ),
               child: Text(
-                'School Book (${Platform.operatingSystem}) v1.0.0 (1)',
+                'SchoolBook (${Platform.operatingSystem}) v1.0.0 (1)',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.labelSmall,
               ),

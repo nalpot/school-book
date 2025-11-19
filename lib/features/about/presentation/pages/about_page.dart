@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/about_item_entity.dart';
@@ -21,7 +23,7 @@ class _AboutPageState extends State<AboutPage> {
       'elektronik dalam rangka memenuhi kebutuhan buku ajar pelajar. '
       'Memanfaatkan kemajuan teknologi, Aplikasi ini menjadi sumber '
       'bagi para pelajar untuk mendapatkan koleksi buku secara '
-      ' lengkap, mudah dan gratis.';
+      'lengkap, mudah dan gratis.';
 
   @override
   Widget build(BuildContext context) {
@@ -74,11 +76,18 @@ class _AboutPageState extends State<AboutPage> {
                   ),
                 ),
               ),
-              Text(
-                '© 2025 School Book',
-                style: Theme.of(context).textTheme.labelSmall,
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).disabledColor.withValues(alpha: 0.2),
+                ),
+                child: Text(
+                  'SchoolBook (${Platform.operatingSystem}) v1.0.0 (1)',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.labelSmall,
+                ),
               ),
-              const SizedBox(height: 8),
             ],
           ),
         ),

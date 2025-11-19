@@ -9,6 +9,7 @@ import 'features/splash/presentation/bloc/splash_bloc.dart';
 import 'routes/app_route.dart';
 
 void main() {
+  // Initialize dependency injection
   injectDependencies();
   SplashDependency.initialize();
 

@@ -50,16 +50,16 @@ class AppDrawer extends StatelessWidget {
         ),
 
         // copyright
-        Padding(
-          padding: const EdgeInsets.only(bottom: 56),
-          child: Text(
-            '© 2025 School Book ALL RIGHT RESERVED',
-            textAlign: TextAlign.center,
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.bold),
-          ),
-        ),
+        // Padding(
+        //   padding: const EdgeInsets.only(bottom: 56),
+        //   child: Text(
+        //     '© 2025 ALL RIGHT RESERVED',
+        //     textAlign: TextAlign.center,
+        //     style: Theme.of(
+        //       context,
+        //     ).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.bold),
+        //   ),
+        // ),
       ],
     );
   }
