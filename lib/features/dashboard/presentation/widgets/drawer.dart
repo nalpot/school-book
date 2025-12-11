@@ -31,7 +31,7 @@ class AppDrawer extends StatelessWidget {
                 child: DrawerHeader(
                   child: Column(
                     children: [
-                      FlutterLogo(size: 56),
+                      AppLogo(size: 56),
                       SizedBox(height: 24),
                       TextLogo(),
                     ],
@@ -40,15 +40,15 @@ class AppDrawer extends StatelessWidget {
               ),
               // Navigation items
               ListTile(
-                title: _widgetTitle(Icons.cloud_download_outlined, 'Download'),
+                title: _widgetTitle(CupertinoIcons.cloud_download, 'Download'),
                 onTap: () => _onTap(context, AppRoutePath.download),
               ),
               ListTile(
-                title: _widgetTitle(Icons.settings_outlined, 'Setting'),
+                title: _widgetTitle(CupertinoIcons.settings, 'Setting'),
                 onTap: () => _onTap(context, AppRoutePath.setting),
               ),
               ListTile(
-                title: _widgetTitle(Icons.info_outlined, 'About'),
+                title: _widgetTitle(CupertinoIcons.info_circle, 'About'),
                 onTap: () => _onTap(context, AppRoutePath.about),
               ),
             ],

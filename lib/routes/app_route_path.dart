@@ -5,8 +5,10 @@ part of 'app_route.dart';
 enum AppRoutePath {
   dashboard('/'),
   about('/about'),
+  category('/category/:id'),
   splash('/splash'),
   download('/download'),
+  reader('/reader/:id'),
   search('/search'),
   setting('/setting');
 

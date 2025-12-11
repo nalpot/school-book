@@ -20,7 +20,7 @@ class _LibraryPageState extends State<LibraryPage> {
       padding: const EdgeInsets.all(8),
       crossAxisCount: 2,
       shrinkWrap: true,
-      children: List.generate(5, (index) {
+      children: List.generate(0, (index) {
         return Card(
           clipBehavior: Clip.hardEdge,
           child: Stack(

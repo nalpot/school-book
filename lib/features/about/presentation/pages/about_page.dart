@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
+import '../../../../core/widget/app_logo.dart';
 import '../../domain/entities/about_item_entity.dart';
 
 class AboutPage extends StatefulWidget {
@@ -45,7 +46,7 @@ class _AboutPageState extends State<AboutPage> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      const FlutterLogo(size: 56),
+                      const AppLogo(size: 78),
                       Padding(
                         padding: const EdgeInsets.all(16),
                         child: Text(

@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/widget/app_logo.dart';
+import '../../../../core/widget/svg_icon.dart';
 import '../../../../core/widget/text_logo.dart';
 import '../../../../routes/app_route.dart';
 import 'explore_page.dart';
@@ -58,14 +61,11 @@ class _DashboardPageState extends State<DashboardPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: false,
+        centerTitle: true,
         iconTheme: const IconThemeData(color: Colors.white),
         title: const Text(
           'SCHOOL BOOK',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search))],
         // Tab bar for switching between main sections
@@ -80,7 +80,7 @@ class _DashboardPageState extends State<DashboardPage>
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.menu_book),
+                  SvgIcon(Svgs.library),
                   SizedBox(width: 10),
                   Text('Library'),
                 ],
@@ -105,8 +105,8 @@ class _DashboardPageState extends State<DashboardPage>
       body: TabBarView(
         controller: controller,
         children: const [
-          LibraryPage(),  // Library tab content
-          ExplorePage(),  // Explore tab content
+          LibraryPage(), // Library tab content
+          ExplorePage(), // Explore tab content
         ],
       ),
     );

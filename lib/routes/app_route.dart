@@ -1,8 +1,10 @@
 import 'package:go_router/go_router.dart';
 
 import '../features/about/presentation/pages/about_page.dart';
+import '../features/category/presentation/pages/category_page.dart';
 import '../features/dashboard/presentation/pages/dashboard_page.dart';
 import '../features/download/presentation/pages/download_page.dart';
+import '../features/reader/presentation/pages/reader_page.dart';
 import '../features/setting/presentation/pages/setting_page.dart';
 import '../features/splash/presentation/pages/splash_page.dart';
 
@@ -67,6 +69,22 @@ class AppRoute {
         name: AppRoutePath.about.name,
         builder: (_, state) {
           return const AboutPage();
+        },
+      ),
+      GoRoute(
+        path: AppRoutePath.category.path,
+        name: AppRoutePath.category.name,
+        builder: (_, state) {
+          final id = state.pathParameters['id'];
+          return CategoryPage(id: id!);
+        },
+      ),
+      GoRoute(
+        path: AppRoutePath.reader.path,
+        name: AppRoutePath.reader.name,
+        builder: (_, state) {
+          final id = state.pathParameters['id'];
+          return ReaderPage(id: int.parse(id!));
         },
       ),
     ],

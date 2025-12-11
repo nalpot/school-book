@@ -45,7 +45,6 @@ class AppTheme {
   ///
   static const Color darkSecondary = Color(0xFF045535);
 
-
   /// A [ThemeData] instance that describes the visual styling of the
   /// application when it is in dark mode.
   ///
@@ -72,6 +71,7 @@ class AppTheme {
   /// The brightness is set to [Brightness.dark].
   ///
   static ThemeData darkTheme = ThemeData(
+    platform: TargetPlatform.iOS,
     useMaterial3: true,
     brightness: Brightness.dark,
     primaryColor: darkPrimary,
@@ -80,12 +80,13 @@ class AppTheme {
       secondary: darkSecondary,
     ),
     scaffoldBackgroundColor: Colors.black,
-    appBarTheme: const AppBarTheme(backgroundColor: darkSecondary),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: darkSecondary,
+      iconTheme: IconThemeData(color: Colors.white),
+    ),
     textTheme: const TextTheme(bodyLarge: TextStyle(color: Colors.white)),
     fontFamily: 'Nunito Sans',
-    drawerTheme: const DrawerThemeData(
-      width: 250,
-    )
+    drawerTheme: const DrawerThemeData(width: 250),
   );
 
   /// A [ThemeData] instance that describes the visual styling of the
@@ -114,6 +115,7 @@ class AppTheme {
   /// The brightness is set to [Brightness.light].
   ///
   static ThemeData lightTheme = ThemeData(
+    platform: TargetPlatform.iOS,
     useMaterial3: true,
     brightness: Brightness.light,
     primaryColor: primary,
@@ -122,11 +124,12 @@ class AppTheme {
       secondary: secondary,
     ),
     scaffoldBackgroundColor: Colors.white,
-    appBarTheme: AppBarTheme(backgroundColor: secondary.withValues(alpha: 0.9)),
+    appBarTheme: AppBarTheme(
+      backgroundColor: secondary,
+      iconTheme: const IconThemeData(color: Colors.white),
+    ),
     textTheme: const TextTheme(bodyLarge: TextStyle(color: Colors.black)),
     fontFamily: 'Nunito Sans',
-    drawerTheme: const DrawerThemeData(
-      width: 250,
-    )
+    drawerTheme: const DrawerThemeData(width: 250),
   );
 }

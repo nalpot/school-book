@@ -1,11 +1,17 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/adapters.dart';
 
 import 'core/blocs/theme/theme_bloc.dart';
-import 'core/di.dart';
+import 'core/cache/local_storage.dart';
+import 'core/services/theme_service.dart';
 import 'core/theme.dart';
-import 'features/splash/di/splash_dependency.dart';
+import 'di.dart';
+import 'features/shared/domain/entities/book_entity.dart';
+import 'features/shared/domain/entities/category_entity.dart';
 import 'features/splash/presentation/bloc/splash_bloc.dart';
+import 'firebase_options.dart';
 import 'routes/app_route.dart';
 
 /// The entry point of the application.
@@ -15,15 +21,30 @@ import 'routes/app_route.dart';
 /// 1. Sets up dependency injection
 /// 2. Initializes splash screen dependencies
 /// 3. Runs the application with [MyApp] as the root widget
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Hive.initFlutter();
+
+  await _initHive();
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions().currentPlatform);
+
   // Initialize dependency injection
   injectDependencies();
 
-  // Initialize splash screen specific dependencies
-  SplashDependency.initialize();
-
   // Start the Flutter application
   runApp(const MyApp());
+}
+
+Future<void> _initHive() async {
+  Hive
+    ..registerAdapter<CategoryEntity>(CategoryEntityAdapter())
+    ..registerAdapter<BookEntity>(BookEntityAdapter());
+
+  await Hive.openBox<bool>(BoxName.theme.name);
+  await Hive.openBox<BookEntity>(BoxName.books.name);
+  await Hive.openBox<CategoryEntity>(BoxName.categories.name);
 }
 
 /// The root widget of the application.
@@ -40,27 +61,34 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Initialize the router for navigation
-    final router = getIt<AppRoute>().router;
+    final router = sl<AppRoute>().router;
 
-    return MultiBlocListener(
-      listeners: [
+    return MultiBlocProvider(
+      providers: [
         // Initialize theme management
-        BlocProvider(create: (_) => getIt<ThemeBloc>()),
+        BlocProvider(create: (_) => sl<ThemeBloc>()),
         // Initialize splash screen state management
-        BlocProvider(create: (_) => getIt<SplashBloc>()),
+        BlocProvider(create: (_) => sl<SplashBloc>()),
       ],
-      child: BlocListener<SplashBloc, SplashState>(
-        listenWhen: (_, current) => current is SplashSuccess,
-        listener: (context, state) {
-          if (state is SplashSuccess) {
-            router.goNamed(AppRoutePath.dashboard.name);
-          }
-        },
+      child: MultiBlocListener(
+        listeners: [
+          BlocListener<SplashBloc, SplashState>(
+            listenWhen: (_, current) => current is SplashSuccess,
+            listener: (context, state) {
+              if (state is SplashSuccess) {
+                router.goNamed(AppRoutePath.dashboard.name);
+              }
+            },
+          ),
+        ],
         child: BlocBuilder<ThemeBloc, ThemeState>(
           builder: (context, state) {
             return MaterialApp.router(
               title: 'SchoolBook',
-              themeMode: state.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+              themeMode:
+                  sl<ThemeService>().isDarkMode
+                      ? ThemeMode.dark
+                      : ThemeMode.light,
               theme: AppTheme.lightTheme,
               darkTheme: AppTheme.darkTheme,
               routerConfig: router,

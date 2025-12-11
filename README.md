@@ -34,8 +34,7 @@ A Flutter application for accessing electronic school textbooks, providing stude
 
 1. Clone the repository
 ```bash
-git clone <repository-url>
-cd schoolbook
+git clone https://github.com/nalpot/school-book.git
 ```
 
 2. Install dependencies
@@ -62,8 +61,6 @@ lib/
 │   └── theme.dart           # App theme configuration
 ├── features/
 │   ├── splash/
-│   │   ├── di/
-│   │   └── presentation/
 │   ├── dashboard/
 │   │   └── presentation/
 │   │       ├── pages/
@@ -71,7 +68,6 @@ lib/
 │   │       │   ├── library_page.dart
 │   │       │   └── explore_page.dart
 │   │       └── widgets/
-│   │           └── drawer.dart
 │   ├── download/
 │   ├── setting/
 │   └── about/
@@ -155,7 +151,7 @@ List<int> ids = asListInt(json, 'ids');
 
 ## License
 
-This project is licensed under the BSD 3-Clause License - see the LICENSE file for details.
+This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICENSE) file for details.
 
 ## Version
 

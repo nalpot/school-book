@@ -11,3 +11,6 @@ class ToggleThemeEvent extends ThemeEvent {}
 class LightThemeEvent extends ThemeEvent {}
 
 class DarkThemeEvent extends ThemeEvent {}
+class CurrentThemeEvent extends ThemeEvent {
+  const CurrentThemeEvent();
+}
